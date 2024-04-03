@@ -1,15 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "codedor/filament-image-or-video",
+    "description": "Package to embed an image or youtube/vimeo as a Filament field",
     "keywords": [
-        ":vendor_name",
+        "codedor",
         "laravel",
-        ":package_slug"
+        "filament-image-or-video"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/codedor/filament-image-or-video",
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "codedor/filament-media-library": "^1.0",
+        "filament/forms": "^3.2",
         "illuminate/contracts": "^10.0",
         "spatie/laravel-package-tools": "^1.12"
     },
@@ -26,19 +28,19 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Codedor\\FilamentImageOrVideo\\": "src",
+            "Codedor\\FilamentImageOrVideo\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Codedor\\FilamentImageOrVideo\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\Providers\\SkeletonServiceProvider"
+                "Codedor\\FilamentImageOrVideo\\Providers\\FilamentImageOrVideoServiceProvider"
             ]
         }
     },
