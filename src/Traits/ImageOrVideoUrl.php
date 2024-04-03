@@ -8,7 +8,7 @@ trait ImageOrVideoUrl
 {
     public function imageOrVideoUrlData(
         array $data,
-              $prefix = ''
+        $prefix = ''
     ): array {
         if (! isset($data[$prefix . 'image_or_video'])) {
             return [

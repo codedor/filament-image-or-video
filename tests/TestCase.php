@@ -2,9 +2,9 @@
 
 namespace Codedor\FilamentImageOrVideo\Tests;
 
+use Codedor\FilamentImageOrVideo\Providers\FilamentImageOrVideoServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Codedor\FilamentImageOrVideo\Providers\FilamentImageOrVideoServiceProvider;
 
 class TestCase extends Orchestra
 {
