@@ -24,13 +24,13 @@ class VideoEmbed
                                     Forms\Components\Group::make([
                                         Forms\Components\Checkbox::make($field . '.loop')
                                             ->default(true)
-                                            ->label(fn (): string => __('filament-oembed::oembed.loop'))
+                                            ->label(fn (): string => __('filament-image-or-video::image-or-video.loop'))
                                             ->reactive()
                                             ->formatStateUsing(fn (mixed $state) => $state ?? true),
 
                                         Forms\Components\Checkbox::make($field . '.autoplay')
                                             ->default(true)
-                                            ->label(fn (): string => __('filament-oembed::oembed.autoplay'))
+                                            ->label(fn (): string => __('filament-image-or-video::image-or-video.autoplay'))
                                             ->reactive()
                                             ->formatStateUsing(fn (mixed $state) => $state ?? true)
                                             ->afterStateUpdated(fn (Forms\Set $set, $state) => $set($field . '.mute', $state)),
@@ -39,19 +39,19 @@ class VideoEmbed
                                     Forms\Components\Group::make([
                                         Forms\Components\Checkbox::make($field . '.controls')
                                             ->default(false)
-                                            ->label(fn (): string => __('filament-oembed::oembed.controls'))
+                                            ->label(fn (): string => __('filament-image-or-video::image-or-video.controls'))
                                             ->reactive(),
 
                                         Forms\Components\Checkbox::make($field . '.mute')
                                             ->default(true)
-                                            ->label(fn (): string => __('filament-oembed::oembed.mute'))
+                                            ->label(fn (): string => __('filament-image-or-video::image-or-video.mute'))
                                             ->reactive()
                                             ->disabled(fn (Forms\Get $get) => $get($field . '.autoplay')),
                                     ]),
 
                                     Forms\Components\Placeholder::make('placeholder')
                                         ->hidden(fn (Forms\Get $get) => ! $get($field . '.autoplay'))
-                                        ->label(fn () => __('filament-oembed::oembed.video muted description'))
+                                        ->label(fn () => __('filament-image-or-video::image-or-video.video muted description'))
                                         ->columnSpan(2),
                                 ]),
                         ]),
@@ -97,7 +97,7 @@ class VideoEmbed
     protected static function urlInput(string $field): Forms\Components\TextInput
     {
         return Forms\Components\TextInput::make($field . '.url')
-            ->label(fn (): string => __('filament-oembed::oembed.url'))
+            ->label(fn (): string => __('filament-image-or-video::image-or-video.url'))
             ->reactive()
             ->lazy()
             ->afterStateUpdated(function (Forms\Set $set, Forms\Get $get, $state) use ($field) {
@@ -123,7 +123,7 @@ class VideoEmbed
     protected static function videoPreview(string $field): Forms\Components\ViewField
     {
         return Forms\Components\ViewField::make($field)
-            ->view('filament-oembed::forms.components.video-embed-preview')
-            ->label(fn (): string => __('filament-oembed::oembed.preview'));
+            ->view('filament-image-or-video::forms.components.video-embed-preview')
+            ->label(fn (): string => __('filament-image-or-video::image-or-video.preview'));
     }
 }

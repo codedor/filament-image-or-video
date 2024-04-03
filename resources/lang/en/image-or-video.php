@@ -11,5 +11,7 @@ return [
     'byline' => 'Byline',
     'portrait' => 'Portrait',
     'preview' => 'Preview',
+    'controls' => 'Controls',
+    'mute' => 'Mute',
+    'video muted description' => 'Video muted description',
 ];
-

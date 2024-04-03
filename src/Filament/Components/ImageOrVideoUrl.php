@@ -16,8 +16,8 @@ class ImageOrVideoUrl
         bool $noVideo = false
     ): Group {
         $oembedClass = match ($simpleOembed) {
-            true => SimpleOEmbed::class,
-            false => OEmbed::class,
+            true => SimpleVideoEmbed::class,
+            false => VideoEmbed::class,
         };
 
         $options = [
