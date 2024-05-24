@@ -15,7 +15,8 @@ class VideoEmbed
                 Forms\Components\Group::make([
                     Forms\Components\Hidden::make($field . '.embed_url'),
                     Forms\Components\Hidden::make($field . '.embed_type')
-                        ->default('youtube'),
+                        ->default('youtube')
+                        ->formatStateUsing(fn (mixed $state) => $state ?? 'youtube'),
                     static::urlInput($field),
                     Forms\Components\Fieldset::make('Main options')
                         ->schema([
@@ -39,11 +40,13 @@ class VideoEmbed
                                     Forms\Components\Group::make([
                                         Forms\Components\Checkbox::make($field . '.controls')
                                             ->default(false)
+                                            ->formatStateUsing(fn (mixed $state) => $state ?? false)
                                             ->label(fn (): string => __('filament-image-or-video::image-or-video.controls'))
                                             ->reactive(),
 
                                         Forms\Components\Checkbox::make($field . '.mute')
                                             ->default(true)
+                                            ->formatStateUsing(fn (mixed $state) => $state ?? true)
                                             ->label(fn (): string => __('filament-image-or-video::image-or-video.mute'))
                                             ->reactive()
                                             ->disabled(fn (Forms\Get $get) => $get($field . '.autoplay')),
