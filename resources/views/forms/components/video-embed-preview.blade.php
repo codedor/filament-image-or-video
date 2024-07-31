@@ -1,10 +1,17 @@
 @php
     $state = $getState();
+
     $params = [
         'autoplay' => $state['autoplay'] ? 1 : 0,
+        'mute' => $state['mute'] ? 1 : 0,
         'loop' => $state['loop'] ? 1 : 0,
         'controls' => $state['controls'] ? 1 : 0,
     ];
+
+    if ($state['embed_url'] && Str::contains($state['embed_url'], 'youtube')) {
+        $videoId = Str::after($state['embed_url'], 'https://www.youtube.com/embed/');
+        $params['playlist'] = $videoId;
+    }
 @endphp
 
 <x-filament-forms::field-wrapper
