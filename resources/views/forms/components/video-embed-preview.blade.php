@@ -8,6 +8,15 @@
         'controls' => $state['controls'] ? 1 : 0,
     ];
 
+    if (
+        $state['embed_type'] === 'youtube'
+        && strpos($state['url'], 'shorts')
+    ) {
+        $url = $state['url'];
+        $id = substr($url, strrpos($url, '/') + 1);
+        $state['embed_url'] = "https://www.youtube.com/embed/$id";
+    }
+
     if ($state['embed_url'] && Str::contains($state['embed_url'], 'youtube')) {
         $videoId = Str::after($state['embed_url'], 'https://www.youtube.com/embed/');
         $params['playlist'] = $videoId;
