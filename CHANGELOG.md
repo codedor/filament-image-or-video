@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.0.4 - 2024-08-26
+
+### What's Changed
+
+* Bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot in https://github.com/codedor/filament-image-or-video/pull/7
+* add fix for youtube shorts by @DevolderLouise in https://github.com/codedor/filament-image-or-video/pull/12
+* Fix phpstan
+
+**Full Changelog**: https://github.com/codedor/filament-image-or-video/compare/v0.0.3...v0.0.4
+
 ## v0.0.3 - 2024-07-31
 
 Fixed loop & muted not working in the CMS

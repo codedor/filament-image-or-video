@@ -44,6 +44,10 @@ class SimpleVideoEmbed extends VideoEmbed
                     Forms\Components\Checkbox::make($field . '.mute')
                         ->default(false)
                         ->hidden(),
+                    Forms\Components\Checkbox::make($field . '.controls')
+                        ->default(false)
+                        ->hidden(),
+
                     static::videoPreview($field),
                 ]),
 
