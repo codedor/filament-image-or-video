@@ -87,7 +87,7 @@ class VideoEmbed
         }
 
         if (preg_match('#youtu\.be/([a-zA-Z0-9_-]+)#i', $url, $matches)) {
-            return "https://www.youtube.com/embed/" . $matches[1];
+            return 'https://www.youtube.com/embed/' . $matches[1];
         }
 
         preg_match('/v=([-\w]+)/', $url, $matches);
