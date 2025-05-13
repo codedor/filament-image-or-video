@@ -14,4 +14,8 @@ return [
     'controls' => 'Controls',
     'mute' => 'Mute',
     'video muted description' => 'Video muted description',
+    'image option' => 'Image (Media library)',
+    'video option' => 'Video (Youtube/Vimeo)',
+    'select label' => 'Image or Video',
+    'video fallback' => 'Video Fallback Image (Media library)',
 ];
