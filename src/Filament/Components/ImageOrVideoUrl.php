@@ -43,7 +43,7 @@ class ImageOrVideoUrl
             AttachmentInput::make($prefix . 'image_id')
                 ->hidden(fn (Get $get) => ! in_array($get($prefix . 'image_or_video'), ['image', 'video']))
                 ->label(fn (Get $get) => $get($prefix . 'image_or_video') === 'image' ? 'Image (Media library)' : 'Video Fallback Image (Media library)')
-                ->allowedFormats($attachmentFormats ?? []),
+                ->allowedFormats($attachmentFormats ?? null),
         ]);
     }
 }
