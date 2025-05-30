@@ -3,9 +3,7 @@
 namespace Codedor\FilamentImageOrVideo\Filament\Components;
 
 use Codedor\MediaLibrary\Filament\AttachmentInput;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Get;
 
 class ImageOrVideoUrl
 {
