@@ -14,7 +14,7 @@ class ImageOrVideoUrl
         ?array $attachmentFormats = null,
         string $prefix = '',
         bool $noVideo = false
-    ): Group {
+    ): \Filament\Schemas\Components\Group {
         $oembedClass = match ($simpleOembed) {
             true => SimpleVideoEmbed::class,
             false => VideoEmbed::class,
@@ -29,7 +29,7 @@ class ImageOrVideoUrl
             unset($options['video']);
         }
 
-        return Group::make([
+        return \Filament\Schemas\Components\Group::make([
             Select::make($prefix . 'image_or_video')
                 ->options($options)
                 ->default('image')
@@ -37,12 +37,12 @@ class ImageOrVideoUrl
                 ->reactive(),
 
             $oembedClass::make($prefix . 'video')
-                ->hidden(fn (Get $get) => $get($prefix . 'image_or_video') !== 'video')
+                ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get($prefix . 'image_or_video') !== 'video')
                 ->label('Video (Youtube/Vimeo)'),
 
             AttachmentInput::make($prefix . 'image_id')
-                ->hidden(fn (Get $get) => ! in_array($get($prefix . 'image_or_video'), ['image', 'video']))
-                ->label(fn (Get $get) => $get($prefix . 'image_or_video') === 'image' ? 'Image (Media library)' : 'Video Fallback Image (Media library)')
+                ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => ! in_array($get($prefix . 'image_or_video'), ['image', 'video']))
+                ->label(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get($prefix . 'image_or_video') === 'image' ? 'Image (Media library)' : 'Video Fallback Image (Media library)')
                 ->allowedFormats($attachmentFormats ?? []),
         ]);
     }
