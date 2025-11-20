@@ -43,11 +43,11 @@ class ImageOrVideoUrl
 
             AttachmentInput::make($prefix . 'image_id')
                 ->hidden(fn (Get $get) => ! in_array($get($prefix . 'image_or_video'), ['image', 'video']))
+                ->allowedFormats($attachmentFormats ?? null)
                 ->label(fn (Get $get) => $get($prefix . 'image_or_video') === 'image'
                     ? __('filament-image-or-video::image-or-video.image option')
                     : __('filament-image-or-video::image-or-video.video fallback')
-                )
-                ->allowedFormats($attachmentFormats ?? []),
+                ),
         ]);
     }
 }
