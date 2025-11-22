@@ -3,9 +3,7 @@
 namespace Codedor\FilamentImageOrVideo\Filament\Components;
 
 use Codedor\MediaLibrary\Filament\AttachmentInput;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Get;
 
 class ImageOrVideoUrl
 {
@@ -14,7 +12,7 @@ class ImageOrVideoUrl
         ?array $attachmentFormats = null,
         string $prefix = '',
         bool $noVideo = false
-    ): Group {
+    ): \Filament\Schemas\Components\Group {
         $oembedClass = match ($simpleOembed) {
             true => SimpleVideoEmbed::class,
             false => VideoEmbed::class,
@@ -29,7 +27,7 @@ class ImageOrVideoUrl
             unset($options['video']);
         }
 
-        return Group::make([
+        return \Filament\Schemas\Components\Group::make([
             Select::make($prefix . 'image_or_video')
                 ->label(__('filament-image-or-video::image-or-video.select label'))
                 ->options($options)
@@ -38,16 +36,17 @@ class ImageOrVideoUrl
                 ->reactive(),
 
             $oembedClass::make($prefix . 'video')
-                ->hidden(fn (Get $get) => $get($prefix . 'image_or_video') !== 'video')
+                ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get($prefix . 'image_or_video') !== 'video')
                 ->label(__('filament-image-or-video::image-or-video.video option')),
 
             AttachmentInput::make($prefix . 'image_id')
-                ->hidden(fn (Get $get) => ! in_array($get($prefix . 'image_or_video'), ['image', 'video']))
-                ->allowedFormats($attachmentFormats ?? null)
-                ->label(fn (Get $get) => $get($prefix . 'image_or_video') === 'image'
+                ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => ! in_array($get($prefix . 'image_or_video'), ['image', 'video']))
+                ->allowedFormats($attachmentFormats ?? [])
+                ->label(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get($prefix . 'image_or_video') === 'image'
                     ? __('filament-image-or-video::image-or-video.image option')
                     : __('filament-image-or-video::image-or-video.video fallback')
                 ),
+
         ]);
     }
 }

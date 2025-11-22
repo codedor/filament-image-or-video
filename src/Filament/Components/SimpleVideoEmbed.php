@@ -7,12 +7,12 @@ use Illuminate\Support\Str;
 
 class SimpleVideoEmbed extends VideoEmbed
 {
-    public static function make(string $field = 'video'): Forms\Components\Fieldset
+    public static function make(string $field = 'video'): \Filament\Schemas\Components\Fieldset
     {
-        return Forms\Components\Fieldset::make($field)
+        return \Filament\Schemas\Components\Fieldset::make($field)
             ->label(fn (): string => Str::of($field)->title())
             ->schema([
-                Forms\Components\Group::make([
+                \Filament\Schemas\Components\Group::make([
                     Forms\Components\Hidden::make($field . '.embed_url'),
                     Forms\Components\Hidden::make($field . '.embed_type')
                         ->default('youtube'),
