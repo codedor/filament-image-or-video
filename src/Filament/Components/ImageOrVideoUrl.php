@@ -19,8 +19,8 @@ class ImageOrVideoUrl
         };
 
         $options = [
-            'image' => 'Image (Media library)',
-            'video' => 'Video (Youtube/Vimeo)',
+            'image' => __('filament-image-or-video::image-or-video.image option'),
+            'video' => __('filament-image-or-video::image-or-video.video option'),
         ];
 
         if ($noVideo) {
@@ -29,6 +29,7 @@ class ImageOrVideoUrl
 
         return \Filament\Schemas\Components\Group::make([
             Select::make($prefix . 'image_or_video')
+                ->label(__('filament-image-or-video::image-or-video.select label'))
                 ->options($options)
                 ->default('image')
                 ->formatStateUsing(fn ($state) => $state ?? 'image')
@@ -36,12 +37,16 @@ class ImageOrVideoUrl
 
             $oembedClass::make($prefix . 'video')
                 ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get($prefix . 'image_or_video') !== 'video')
-                ->label('Video (Youtube/Vimeo)'),
+                ->label(__('filament-image-or-video::image-or-video.video option')),
 
             AttachmentInput::make($prefix . 'image_id')
                 ->hidden(fn (\Filament\Schemas\Components\Utilities\Get $get) => ! in_array($get($prefix . 'image_or_video'), ['image', 'video']))
-                ->label(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get($prefix . 'image_or_video') === 'image' ? 'Image (Media library)' : 'Video Fallback Image (Media library)')
-                ->allowedFormats($attachmentFormats ?? []),
+                ->allowedFormats($attachmentFormats ?? [])
+                ->label(fn (\Filament\Schemas\Components\Utilities\Get $get) => $get($prefix . 'image_or_video') === 'image'
+                    ? __('filament-image-or-video::image-or-video.image option')
+                    : __('filament-image-or-video::image-or-video.video fallback')
+                ),
+
         ]);
     }
 }
